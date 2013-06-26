@@ -170,7 +170,7 @@ private[producer] class ZKBrokerPartitionInfo(config: ZKConfig, producerCbk: (In
 
       val numPartitions = brokerList.map{bid =>
         val x = ZkUtils.readData(zkClient, brokerTopicPath + "/" + bid)
-        if (x == "") 0 else bid.toInt
+        if (x == "") 0 else x.toInt
       }
 
       val brokerPartitions = brokerList.map(bid => bid.toInt).zip(numPartitions)
